@@ -1,0 +1,6 @@
+# compiled files
+target/
+**/*.class
+
+# misc files
+**/*.swp
