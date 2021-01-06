@@ -6,6 +6,8 @@ import io.circe.generic.semiauto.deriveDecoder
 import io.circe.parser
 import io.circe.Error
 
+import scala.io.Source.fromURL
+
 class APIException(err: String) extends Exception
 
 trait FilmIt extends Iterator[Film] {
@@ -28,6 +30,9 @@ class FilmItImplementation extends FilmIt {
 }
 
 object AccessIMDBApi {
+  private val baseURL: String = "https://imdb-api.com"
+  private val lang: String = "en"
+  private val fullBase: String = baseURL + "/" + lang +"/API/"
   private val key: String = ""
   def getTop250: Iterator[Film] = {
     val raw: String = getRaw250
@@ -42,8 +47,14 @@ object AccessIMDBApi {
   }
 
   private def getRaw250: String = {
+    val cat: String = "Top250Movies"
+    val get: String = makeGETURL(cat)
     
+    fromURL(get).mkString
   }
+
+  private def makeGETURL(cat: String): String = 
+    fullBase + cat + key
     
 }
 
