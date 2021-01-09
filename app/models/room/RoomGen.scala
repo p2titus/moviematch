@@ -12,8 +12,8 @@ private object RoomGenImpl extends RoomGen {
   private var occupied: List[Room] = Nil
 
   override def genRoomCode: String = {
-    var curRoom: Room = null
-    while(null != curRoom && !occupied.exists(_==curRoom))
+    var curRoom: Room = genRoom
+    while(occupied.exists(_==curRoom))
       curRoom = genRoom
     addRoom(curRoom)
     curRoom.roomID
