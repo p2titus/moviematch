@@ -1,5 +1,11 @@
-@()
+@(roomgen: RoomGen)
 
 @main("Welcome to Play") {
-  <h1>Welcome to Play!</h1>
+  <h1>Welcome to Moviematch!</h1>
+  <p>Click <a href="/matchroom=roomgen.gen">HERE</a> to start a new matchroom</p>
+  <p>Enter a code below to enter an already existing room</p>
+  <form action="/redirect_matchroom.html">
+	<input type="text" id="room_id">
+	<input type="submit" value="Submit">
+  </form>
 }
